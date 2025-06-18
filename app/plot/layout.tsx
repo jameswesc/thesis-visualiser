@@ -1,12 +1,14 @@
-import { PlotSelect } from "@/components/plot-select";
+import { PlotSelect } from "@/components/plot/plot-select";
+
+import { PlotNavLinks } from "@/components/plot/plot-nav-links";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="dark bg-background text-foreground px-8 py-2 flex items-center">
-        <span className="mr-4">Plot</span>
+      <header className="dark bg-background text-foreground px-8 py-2 flex gap-4 items-center">
         <PlotSelect />
-      </div>
+        <PlotNavLinks />
+      </header>
       {children}
     </>
   );

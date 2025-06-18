@@ -10,6 +10,7 @@ type Bounds = {
 
 export type PlotData = {
   numPoints: number;
+  id: string;
   x: number[];
   y: number[];
   z: number[];
@@ -71,6 +72,7 @@ export async function fetchPlotData(plotId: string): Promise<PlotData> {
 
   const plotData: PlotData = {
     numPoints,
+    id: plotId,
     x: xs,
     y: ys,
     z: zs,

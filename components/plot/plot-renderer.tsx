@@ -55,6 +55,7 @@ export function PlotRenderer({
       camera={{
         position: [0, 35, 35],
       }}
+      className="absolute inset-0"
     >
       <OrbitControls />
 
