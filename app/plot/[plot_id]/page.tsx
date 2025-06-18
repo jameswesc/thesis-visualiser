@@ -16,7 +16,7 @@ export default async function Page({
   return (
     <div className="px-8 py-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
       <div className="lg:col-span-2">
-        <AspectRatio ratio={4 / 3} className="bg-gray-100 rounded-2xl ">
+        <AspectRatio ratio={16 / 9} className="bg-gray-100 rounded-2xl ">
           <Suspense>
             <PlotRenderer plotId={plot_id} data={plotData} />
           </Suspense>
@@ -27,7 +27,7 @@ export default async function Page({
           <PlotHistogram plotId={plot_id} />
         </Suspense>
       </div>
-      <div>
+      <div className="lg:col-span-2">
         <PlotStandardMetrics plotId={plot_id} />
       </div>
     </div>

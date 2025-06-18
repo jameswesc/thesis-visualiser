@@ -25,7 +25,9 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
       height: 800,
       x: {
         percent: true,
-        domain: [0, 20],
+      },
+      y: {
+        grid: true,
       },
       marginLeft: 60,
       marks: [
@@ -33,7 +35,7 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
           x: "proportion",
           y: "zmin",
           z: "plotId",
-          curve: "catmull-rom",
+          curve: "step-before",
           strokeWidth: 1,
           stroke: "var(--color-neutral-300)",
           strokeOpacity: 0.5,
@@ -44,7 +46,7 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
           {
             x: "proportion",
             y: "zmin",
-            curve: "catmull-rom",
+            curve: "step-before",
             stroke: "var(--chart-1)",
             strokeOpacity: 1,
             strokeWidth: 3,

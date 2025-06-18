@@ -14,8 +14,15 @@ export function PlotTicksChart({
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const selectedPlotData = data.find((d) => d.site_plot_id === plotId);
+
   useEffect(() => {
-    const chart = Plot.plot({
+    const chart = Plot.frame().plot({
+      marginLeft: 16,
+      clip: false,
+      x: {
+        nice: true,
+      },
       marks: [
         Plot.tickX(data, {
           x: metric,
@@ -39,8 +46,13 @@ export function PlotTicksChart({
   }, [ref, plotId, metric, data]);
 
   return (
-    <div className="flex">
-      <div>{metric}</div>
+    <div>
+      <p className="font-mono ml-4">
+        <span>{metric} </span>
+        <span className="text-[var(--chart-1)]">
+          {selectedPlotData[metric].toFixed(1)}
+        </span>
+      </p>
       <div ref={ref}></div>
     </div>
   );
