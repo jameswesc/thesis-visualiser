@@ -2,28 +2,43 @@
 
 import { PlotData } from "@/lib/fetch-plot";
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useMemo } from "react";
-import { OrbitControls, Point, Points } from "@react-three/drei";
-import { Color, LinearSRGBColorSpace, SRGBColorSpace } from "three";
+import { use, useMemo } from "react";
+import { OrbitControls, Points } from "@react-three/drei";
+import { Color, SRGBColorSpace } from "three";
 
-export function PlotRenderer({ data }: { plotId: string; data: PlotData }) {
+export function PlotRenderer({
+  data: dataPromise,
+}: {
+  plotId: string;
+  data: Promise<PlotData>;
+}) {
+  const data = use(dataPromise);
+
   const buffers = useMemo(() => {
     const positionBuffer = new Float32Array(data.numPoints * 3);
     const colorBuffer = new Float32Array(data.numPoints * 3);
 
     const color = new Color();
 
+    const {
+      x: [minX, maxX],
+      y: [minY, maxY],
+    } = data.bounds;
+    const cx = (minX + maxX) / 2;
+    const cy = (minY + maxY) / 2;
+
     for (let i = 0; i < data.numPoints; i++) {
       const offset = i * 3;
-      const x = data.positions[offset + 0] - data.center.x;
-      const y = data.positions[offset + 1] - data.center.y;
-      const z = data.positions[offset + 2];
+
+      const x = data.x[i] - cx;
+      const y = data.y[i] - cy;
+      const z = data.z[i];
 
       positionBuffer.set([x, z, y], offset);
 
-      const r = data.colors[offset + 0];
-      const g = data.colors[offset + 1];
-      const b = data.colors[offset + 2];
+      const r = data.r[i];
+      const g = data.g[i];
+      const b = data.b[i];
 
       color.setRGB(r, g, b, SRGBColorSpace);
       color.toArray(colorBuffer, offset);
