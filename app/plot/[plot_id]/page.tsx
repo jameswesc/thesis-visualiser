@@ -13,15 +13,17 @@ export default async function Page({
   const plotData = fetchPlotData(plot_id);
 
   return (
-    <div className="px-8 py-4 grid gap-4 lg:grid-cols-2 grid-cols-1">
-      <AspectRatio ratio={4 / 3} className="bg-gray-100 rounded-2xl col-span-1">
+    <div className="px-8 py-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="lg:col-span-2">
+        <AspectRatio ratio={4 / 3} className="bg-gray-100 rounded-2xl ">
+          <Suspense>
+            <PlotRenderer plotId={plot_id} data={plotData} />
+          </Suspense>
+        </AspectRatio>
+      </div>
+      <div className="lg:col-span-1">
         <Suspense>
-          <PlotRenderer plotId={plot_id} data={plotData} />
-        </Suspense>
-      </AspectRatio>
-      <div className="col-span-1">
-        <Suspense>
-          <PlotHistogram plotId={plot_id} data={plotData} />
+          <PlotHistogram plotId={plot_id} />
         </Suspense>
       </div>
     </div>
