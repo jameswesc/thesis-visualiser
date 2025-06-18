@@ -8,7 +8,6 @@ const allProfiles = heightDensityProfiles.flatMap((plotProfile) =>
   plotProfile.height_profile
     .map((d) => ({
       ...d,
-      proportion: d.proportion / 100,
       plotId: plotProfile.site_plot_id,
     }))
     .filter((d) => d.zmin >= 0),
@@ -22,6 +21,7 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
     // if (!profile) return;
 
     const chart = Plot.plot({
+      title: "Height Density Profile",
       height: 800,
       x: {
         percent: true,
@@ -35,8 +35,8 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
           z: "plotId",
           curve: "catmull-rom",
           strokeWidth: 1,
-          stroke: "var(--color-neutral-500)",
-          strokeOpacity: 0.1,
+          stroke: "var(--color-neutral-300)",
+          strokeOpacity: 0.5,
         }),
 
         Plot.line(
@@ -48,6 +48,7 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
             stroke: "var(--chart-1)",
             strokeOpacity: 1,
             strokeWidth: 3,
+            // marker: true,
           },
         ),
       ],

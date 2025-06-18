@@ -1,5 +1,6 @@
 import { PlotHistogram } from "@/components/plot/plot-historgram";
 import { PlotRenderer } from "@/components/plot/plot-renderer";
+import { PlotStandardMetrics } from "@/components/plot/plot-std-metrics";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { fetchPlotData } from "@/lib/fetch-plot";
 import { Suspense } from "react";
@@ -25,6 +26,9 @@ export default async function Page({
         <Suspense>
           <PlotHistogram plotId={plot_id} />
         </Suspense>
+      </div>
+      <div>
+        <PlotStandardMetrics plotId={plot_id} />
       </div>
     </div>
   );
