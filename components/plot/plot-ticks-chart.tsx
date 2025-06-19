@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as Plot from "@observablehq/plot";
+import { plot, frame, tickX } from "@observablehq/plot";
 
 export function PlotTicksChart({
   plotId,
@@ -17,19 +17,20 @@ export function PlotTicksChart({
   const selectedPlotData = data.find((d) => d.site_plot_id === plotId);
 
   useEffect(() => {
-    const chart = Plot.frame().plot({
+    const chart = plot({
       marginLeft: 16,
       clip: false,
       x: {
         nice: true,
       },
       marks: [
-        Plot.tickX(data, {
+        frame(),
+        tickX(data, {
           x: metric,
           stroke: "var(--color-neutral-300)",
           strokeOpacity: 1,
         }),
-        Plot.tickX(
+        tickX(
           data.filter((d) => d.site_plot_id === plotId),
           {
             x: metric,

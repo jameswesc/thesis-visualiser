@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import * as Plot from "@observablehq/plot";
+import { plot, line } from "@observablehq/plot";
 import heightDensityProfiles from "@/data/height_density_profile_1m.json";
 
 const allProfiles = heightDensityProfiles.flatMap((plotProfile) =>
@@ -20,18 +20,19 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
     console.log(allProfiles);
     // if (!profile) return;
 
-    const chart = Plot.plot({
+    const chart = plot({
       title: "Height Density Profile",
       height: 800,
       x: {
         percent: true,
+        domain: [0, 20],
       },
       y: {
         grid: true,
       },
       marginLeft: 60,
       marks: [
-        Plot.line(allProfiles, {
+        line(allProfiles, {
           x: "proportion",
           y: "zmin",
           z: "plotId",
@@ -41,7 +42,7 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
           strokeOpacity: 0.5,
         }),
 
-        Plot.line(
+        line(
           allProfiles.filter((d) => d.plotId === plotId),
           {
             x: "proportion",

@@ -32,8 +32,11 @@ export default function RootLayout({
           <Link className="underline" href="/plot">
             Plot Viewer
           </Link>
+          <Link className="underline" href="/site">
+            Metrics by Site
+          </Link>
           <Link className="underline" href="/site-type">
-            Site Type
+            Metrics by Type
           </Link>
         </header>
         {children}
