@@ -13,6 +13,8 @@ export default function Home() {
       </p>
       <p className="p-4 bg-amber-100 border border-amber-200 rounded-md">
         🚧 <b>This site is under active development.</b>
+        <br />
+        🛜 <b>Viewing a plot fetches ~10MB of data and can take a while.</b>
       </p>
       <h2>Pages</h2>
       <h3>Plot Viewer</h3>
