@@ -29,6 +29,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="dark bg-background text-foreground px-8 h-12 flex gap-4 items-center">
+          <Link className="underline" href="/">
+            Home
+          </Link>
           <Link className="underline" href="/plot">
             Plot Viewer
           </Link>
