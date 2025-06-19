@@ -11,6 +11,10 @@ const metricNames = Object.keys(stdMetrics[0]).filter(
 export function SiteTypeMetrics() {
   return (
     <div>
+      <p className="mb-6">
+        Note: In the following box plots, the solid line is the meadian, and
+        dashed line is the mean.
+      </p>
       {metricNames.map((metric) => (
         <SiteTypeChart key={metric} metric={metric} data={stdMetrics} />
       ))}
