@@ -24,7 +24,6 @@ export function PlotTicksChart({
         nice: true,
       },
       marks: [
-        frame(),
         tickX(data, {
           x: metric,
           stroke: "var(--color-neutral-300)",
@@ -38,6 +37,7 @@ export function PlotTicksChart({
             strokeWidth: 3,
           },
         ),
+        frame(),
       ],
     });
 

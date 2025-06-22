@@ -1,12 +1,7 @@
 "use client";
 
-import stdMetrics from "@/data/std_metrics.json";
+import { allMetrics, singleNumberMetricKeys } from "@/data/metrics";
 import { SiteChart } from "./site-chart";
-
-const metricNames = Object.keys(stdMetrics[0]).filter(
-  (key) =>
-    !["fid", "site", "plot_number", "site_type", "site_plot_id"].includes(key),
-);
 
 export function SiteMetrics() {
   return (
@@ -15,8 +10,8 @@ export function SiteMetrics() {
         Note: In the following box plots, the solid line is the meadian, and
         dashed line is the mean.
       </p>
-      {metricNames.map((metric) => (
-        <SiteChart key={metric} metric={metric} data={stdMetrics} />
+      {singleNumberMetricKeys.map((metric) => (
+        <SiteChart key={metric} metric={metric} data={allMetrics} />
       ))}
     </div>
   );
