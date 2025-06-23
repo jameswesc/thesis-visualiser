@@ -1,3 +1,5 @@
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -36,6 +38,14 @@ export default function Home() {
         </a>
         . Metrics shown will be changing a lot.
       </p>
+      <h2>Site Types</h2>
+      <AspectRatio ratio={1}>
+        <Image
+          src="/land-classes.png"
+          alt="Chart showing land classes (site types)"
+          fill
+        />
+      </AspectRatio>
       <h2>Technologies</h2>
       <ul>
         <li>
