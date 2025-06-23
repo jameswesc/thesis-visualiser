@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { frame, dot, tickY, plot, boxY, groupZ } from "@observablehq/plot";
+import { sitesInOrder, siteTypeColors, siteTypesInOrder } from "@/data/scales";
 
 export function SiteChart({ metric, data }: { metric: string; data: any[] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -9,30 +10,26 @@ export function SiteChart({ metric, data }: { metric: string; data: any[] }) {
   useEffect(() => {
     const chart = plot({
       width: 1200,
+      fx: {
+        domain: sitesInOrder,
+      },
       y: {
         grid: true,
       },
       color: {
+        domain: siteTypesInOrder,
+        range: siteTypeColors,
         legend: true,
-        // domain: ["AGG", "EPO"],
       },
       marks: [
         frame(),
-
-        // Plot.barY(
-        //   data,
-        //   Plot.groupX(
-        //     { y: "mean" },
-        //     { y: metric, fx: "site_type", x: "plot_number", fill: "site_type" },
-        //   ),
-        // ),
 
         boxY(data, {
           fx: "site",
           y: metric,
           stroke: "site_type",
           fill: "site_type",
-          fillOpacity: 0.4,
+          fillOpacity: 0.3,
         }),
 
         tickY(

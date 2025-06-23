@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { frame, dot, tickY, plot, boxY, groupZ } from "@observablehq/plot";
+import { siteTypeColors, siteTypesInOrder } from "@/data/scales";
 
 export function SiteTypeChart({
   metric,
@@ -17,23 +18,23 @@ export function SiteTypeChart({
       y: {
         grid: true,
       },
+      fx: {
+        domain: siteTypesInOrder,
+      },
+      color: {
+        domain: siteTypesInOrder,
+        range: siteTypeColors,
+        legend: true,
+      },
       marks: [
         frame(),
-
-        // Plot.barY(
-        //   data,
-        //   Plot.groupX(
-        //     { y: "mean" },
-        //     { y: metric, fx: "site_type", x: "plot_number", fill: "site_type" },
-        //   ),
-        // ),
 
         boxY(data, {
           fx: "site_type",
           y: metric,
           stroke: "site_type",
           fill: "site_type",
-          fillOpacity: 0.4,
+          fillOpacity: 0.3,
         }),
 
         tickY(

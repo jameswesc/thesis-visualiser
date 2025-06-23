@@ -1,6 +1,7 @@
 "use client";
 
 import { allMetrics, singleNumberMetricKeys } from "@/data/metrics";
+import { sitesInOrder } from "@/data/scales";
 import { SiteChart } from "./site-chart";
 
 export function SiteMetrics() {
