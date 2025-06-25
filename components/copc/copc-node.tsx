@@ -2,8 +2,7 @@
 
 import { Edges, Float, Points } from "@react-three/drei";
 import { Hierarchy, Copc } from "copc";
-import { useEffect, useMemo, useState } from "react";
-import { Color, SRGBColorSpace } from "three";
+import { useEffect, useState } from "react";
 import { createLazPerf } from "laz-perf";
 
 export function CopcNode({
@@ -24,6 +23,12 @@ export function CopcNode({
     colors: Float32Array;
   }>();
 
+  // The cube center
+  // In the future a "shift" might be better
+  const cx = (copc.info.cube[0] + copc.info.cube[3]) / 2;
+  const cy = (copc.info.cube[1] + copc.info.cube[4]) / 2;
+  const cz = (copc.info.cube[2] + copc.info.cube[5]) / 2;
+
   useEffect(() => {
     async function loadNodeData() {
       const lazPerf = await createLazPerf({
@@ -38,9 +43,6 @@ export function CopcNode({
         lazPerf: lazPerf,
       });
 
-      const cx = (copc.info.cube[0] + copc.info.cube[3]) / 2;
-      const cy = (copc.info.cube[1] + copc.info.cube[4]) / 2;
-
       const getters = ["X", "Y", "Z", "Red", "Green", "Blue"].map(view.getter);
       const getPoint = (i: number) => getters.map((get) => get(i));
 
@@ -50,6 +52,7 @@ export function CopcNode({
       for (let i = 0; i < node.pointCount; i++) {
         const [x, y, z, r, g, b] = getPoint(i);
         // Switch y and z for threejs coord system
+        // Don't shift Z
         positions.set([x - cx, z, y - cy], i * 3);
         colors.set([r / 65535, g / 65535, b / 65535], i * 3);
       }
@@ -64,11 +67,29 @@ export function CopcNode({
     };
   }, [filename, node, copc]);
 
-  // const { depth, x, y, z } = parseNodeId(nodeId);
+  const { depth, x, y, z } = parseNodeId(nodeId);
+  const childNodeCoords = getChildNodeCoords(depth, x, y, z);
 
-  // const xwidth = copc.info.cube[3] - copc.info.cube[0];
-  // const ywidth = copc.info.cube[4] - copc.info.cube[1];
-  // const zwidth = copc.info.cube[5] - copc.info.cube[2];
+  const childNodes = childNodeCoords
+    .map(({ depth, x, y, z }) => {
+      const id = `${depth}-${x}-${y}-${z}`;
+      const node = nodeMap[id];
+      if (!node) return null;
+
+      return {
+        nodeId: id,
+        node,
+      };
+    })
+    .filter((d) => d != null);
+
+  const innerCubes = Math.pow(2, depth);
+  const cubeWidth = (copc.info.cube[3] - copc.info.cube[0]) / innerCubes;
+
+  // Calculate cube shifts for positioning
+  const cubeXShift = (x - (innerCubes - 1) / 2) * cubeWidth;
+  const cubeYShift = (y - (innerCubes - 1) / 2) * cubeWidth;
+  const cubeZShift = (z - (innerCubes - 1) / 2) * cubeWidth;
 
   if (!buffers) {
     return null;
@@ -81,13 +102,26 @@ export function CopcNode({
         positions={buffers.positions}
         colors={buffers.colors}
       >
-        <pointsMaterial size={0.5} vertexColors />
+        <pointsMaterial size={0.2} vertexColors />
       </Points>
-      {/* <mesh scale={[xwidth, ywidth, zwidth]}>
+      <mesh
+        scale={cubeWidth}
+        position={[cubeXShift, cz + cubeZShift, cubeYShift]}
+      >
         <boxGeometry />
         <meshBasicMaterial visible={false} />
         <Edges lineWidth={1} color="red" />
-      </mesh> */}
+      </mesh>
+      {childNodes.map(({ nodeId, node }) => (
+        <CopcNode
+          key={nodeId}
+          filename={filename}
+          nodeId={nodeId}
+          node={node}
+          nodeMap={nodeMap}
+          copc={copc}
+        />
+      ))}
     </>
   );
 }
@@ -103,4 +137,17 @@ function parseNodeId(nodeId: string) {
     y,
     z,
   };
+}
+
+function getChildNodeCoords(depth: number, x: number, y: number, z: number) {
+  return [
+    { depth: depth + 1, x: x, y: y, z: z },
+    { depth: depth + 1, x: x + 1, y: y, z: z },
+    { depth: depth + 1, x: x, y: y + 1, z: z },
+    { depth: depth + 1, x: x + 1, y: y + 1, z: z },
+    { depth: depth + 1, x: x, y: y, z: z + 1 },
+    { depth: depth + 1, x: x + 1, y: y, z: z + 1 },
+    { depth: depth + 1, x: x, y: y + 1, z: z + 1 },
+    { depth: depth + 1, x: x + 1, y: y + 1, z: z + 1 },
+  ];
 }
