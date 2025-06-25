@@ -110,7 +110,7 @@ export function CopcNode({
       >
         <boxGeometry />
         <meshBasicMaterial visible={false} />
-        <Edges lineWidth={1} color="red" />
+        <Edges lineWidth={1} color="red" scale={0.98} />
       </mesh>
       {childNodes.map(({ nodeId, node }) => (
         <CopcNode
