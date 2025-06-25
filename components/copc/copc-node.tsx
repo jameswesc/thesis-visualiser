@@ -1,6 +1,6 @@
 "use client";
 
-import { Edges, Float, Points } from "@react-three/drei";
+import { Edges, Points } from "@react-three/drei";
 import { Hierarchy, Copc } from "copc";
 import { useEffect, useState } from "react";
 import { createLazPerf } from "laz-perf";
