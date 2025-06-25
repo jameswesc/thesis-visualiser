@@ -1,19 +1,11 @@
 "use client";
 
-import { PlotData } from "@/lib/fetch-plot";
 import { Canvas } from "@react-three/fiber";
-import { use, useMemo } from "react";
+import { useMemo } from "react";
 import { OrbitControls, Points } from "@react-three/drei";
 import { Color, SRGBColorSpace } from "three";
 
-export function PlotRenderer({
-  data: dataPromise,
-}: {
-  plotId: string;
-  data: Promise<PlotData>;
-}) {
-  const data = use(dataPromise);
-
+export function PlotRenderer({ plotId }: { plotId: string }) {
   const buffers = useMemo(() => {
     const positionBuffer = new Float32Array(data.numPoints * 3);
     const colorBuffer = new Float32Array(data.numPoints * 3);

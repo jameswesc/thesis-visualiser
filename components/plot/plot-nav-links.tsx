@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import plots from "@/data/plots.json";
 
 export function PlotNavLinks() {
-  const { plot_id } = useParams<{ plot_id: string }>();
+  const searchParams = useSearchParams();
+  const plotId = searchParams.get("id");
 
-  const currentIndex = plots.findIndex((plot) => plot.site_plot_id === plot_id);
+  const currentIndex = plots.findIndex((plot) => plot.site_plot_id === plotId);
 
   const nextPlot =
     currentIndex < plots.length - 1
@@ -18,8 +19,8 @@ export function PlotNavLinks() {
 
   return (
     <>
-      {prevPlot && <Link href={prevPlot}>Previous</Link>}
-      {nextPlot && <Link href={nextPlot}>Next</Link>}
+      {prevPlot && <Link href={`/plot?id=${prevPlot}`}>Previous</Link>}
+      {nextPlot && <Link href={`/plot?id=${nextPlot}`}>Next</Link>}
     </>
   );
 }

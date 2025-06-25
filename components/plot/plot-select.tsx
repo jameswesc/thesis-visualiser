@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { groups } from "d3";
 
 const plotsByTypeBySite = groups(
@@ -22,17 +22,21 @@ const plotsByTypeBySite = groups(
 );
 
 export function PlotSelect() {
-  const { plot_id } = useParams<{ plot_id: string }>();
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const plotId = searchParams.get("id");
+
+  const handlePlotChange = (sitePlotId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("id", sitePlotId);
+    router.push(`/plot?${params.toString()}`);
+  };
 
   return (
     <>
       <span>Plot</span>
 
-      <Select
-        value={plot_id}
-        onValueChange={(sitePlotId) => router.push(`/plot/${sitePlotId}`)}
-      >
+      <Select value={plotId || undefined} onValueChange={handlePlotChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Select a plot" />
         </SelectTrigger>
