@@ -10,6 +10,8 @@ export function PlotCanvas({ children }: { children: React.ReactNode }) {
             <Canvas
                 camera={{
                     position: [0, 35, 35],
+                    near: 0.01,
+                    far: 400,
                 }}
                 orthographic
             >
