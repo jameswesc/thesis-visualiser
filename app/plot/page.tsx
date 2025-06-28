@@ -5,21 +5,21 @@ import { PlotPointCloud } from "@/components/plot/plot-point-cloud";
 import { Suspense } from "react";
 
 export default function Layout() {
-  return (
-    <>
-      <header className="bg-background text-foreground px-8 h-12 flex gap-4 items-center border-b">
-        <Suspense>
-          <PlotSelect />
-          <PlotNavLinks />
-        </Suspense>
-      </header>
-      <div className="px-8 py-4 grid grid-cols-1 gap-4">
-        <PlotCanvas>
-          <Suspense>
-            <PlotPointCloud />
-          </Suspense>
-        </PlotCanvas>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="bg-background text-foreground px-8 h-12 flex gap-4 items-center border-b">
+                <Suspense>
+                    <PlotSelect />
+                    <PlotNavLinks />
+                </Suspense>
+            </div>
+            <div className="flex-1 relative bg-neutral-100">
+                <PlotCanvas>
+                    <Suspense>
+                        <PlotPointCloud />
+                    </Suspense>
+                </PlotCanvas>
+            </div>
+        </>
+    );
 }

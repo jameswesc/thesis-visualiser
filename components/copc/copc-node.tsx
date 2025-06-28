@@ -111,7 +111,7 @@ export function CopcNode({
                 positions={buffers.positions}
                 colors={buffers.colors}
             >
-                <pointsMaterial size={0.2} vertexColors />
+                <pointsMaterial size={2} vertexColors />
             </Points>
             {/* <mesh
                 scale={cubeWidth}

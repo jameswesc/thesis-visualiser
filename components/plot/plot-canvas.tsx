@@ -6,15 +6,15 @@ import { useEffect } from "react";
 
 export function PlotCanvas({ children }: { children: React.ReactNode }) {
     return (
-        <AspectRatio ratio={1} className="bg-gray-100 rounded-2xl ">
+        <div className="absolute inset-0">
             <Canvas
                 camera={{
                     position: [0, 35, 35],
                 }}
-                className="absolute inset-0"
+                orthographic
             >
                 {children}
             </Canvas>
-        </AspectRatio>
+        </div>
     );
 }
