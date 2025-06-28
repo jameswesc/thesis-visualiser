@@ -1,7 +1,7 @@
 import { PlotSelect } from "@/components/plot/plot-select";
 import { PlotNavLinks } from "@/components/plot/plot-nav-links";
 import { PlotCanvas } from "@/components/plot/plot-canvas";
-import { PlotPointCloud } from "@/components/plot/plot-point-cloud";
+import { PlotViewer } from "@/components/plot/plot-viewer";
 import { Suspense } from "react";
 
 export default function Layout() {
@@ -15,9 +15,7 @@ export default function Layout() {
             </div>
             <div className="flex-1 relative bg-neutral-100">
                 <PlotCanvas>
-                    <Suspense>
-                        <PlotPointCloud />
-                    </Suspense>
+                    <PlotViewer />
                 </PlotCanvas>
             </div>
         </>

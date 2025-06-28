@@ -1,27 +1,20 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { CopcPointCloud } from "../copc/copc-point-cloud";
 import {
+    OrbitControls,
     GizmoHelper,
     GizmoViewport,
     Grid,
-    OrbitControls,
 } from "@react-three/drei";
+import { CopcPointCloud } from "./copc-point-cloud";
+import { Suspense } from "react";
 
-export function PlotPointCloud() {
-    const searchParams = useSearchParams();
-    const plotId = searchParams.get("id");
-
-    if (!plotId) {
-        return null;
-    }
-
-    const httpFilename = `${window.location.origin}/lidar-plots-copc/${plotId}.copc.laz`;
-
+export function CopcViewer({ filename }: { filename: string }) {
     return (
         <>
-            <CopcPointCloud key={plotId} filename={httpFilename} />;
+            <Suspense>
+                <CopcPointCloud key={filename} filename={filename} />
+            </Suspense>
             <Grid
                 cellSize={1}
                 sectionSize={10}
