@@ -11,7 +11,7 @@ export function PlotViewer() {
         return null;
     }
 
-    const httpFilename = `${window.location.origin}/lidar-plots-copc/${plotId}.copc.laz`;
+    const httpFilename = `${window.location.origin}/plots/lidar/${plotId}.copc.laz`;
 
     return <CopcViewer filename={httpFilename} />;
 }
