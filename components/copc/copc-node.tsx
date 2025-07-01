@@ -50,14 +50,9 @@ export function CopcNode({
                 lazPerf: lazPerf,
             });
 
-            const getters = [
-                "X",
-                "Y",
-                "HeightAboveGround",
-                "Red",
-                "Green",
-                "Blue",
-            ].map(view.getter);
+            const getters = ["X", "Y", "Z", "Red", "Green", "Blue"].map(
+                view.getter,
+            );
             const getPoint = (i: number) => getters.map((get) => get(i));
 
             const positions = new Float32Array(view.pointCount * 3);
@@ -69,12 +64,13 @@ export function CopcNode({
                 // Switch y and z for threejs coord system
                 // Don't shift Z
                 positions.set([x - cx, z, y - cy], i * 3);
-                tempColor.setRGB(
-                    r / 65535,
-                    g / 65535,
-                    b / 65535,
-                    SRGBColorSpace,
-                );
+                // tempColor.setRGB(
+                //     r / 65535,
+                //     g / 65535,
+                //     b / 65535,
+                //     SRGBColorSpace,
+                // );
+                tempColor.set(colorScale(z));
                 colors.set(tempColor.toArray(), i * 3);
             }
 
@@ -125,14 +121,14 @@ export function CopcNode({
             >
                 <pointsMaterial size={3} vertexColors />
             </Points>
-            <mesh
+            {/* <mesh
                 scale={cubeWidth}
                 position={[cubeXShift, cz + cubeZShift, cubeYShift]}
             >
                 <boxGeometry />
                 <meshBasicMaterial visible={false} />
                 <Edges lineWidth={1} color="red" scale={1} />
-            </mesh>
+            </mesh> */}
             {childNodes.map(({ nodeId, node }) => (
                 <CopcNode
                     key={nodeId}

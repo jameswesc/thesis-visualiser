@@ -8,7 +8,6 @@ import {
 } from "@react-three/drei";
 import { CopcPointCloud } from "./copc-point-cloud";
 import { Suspense } from "react";
-import "./edl-pass";
 
 export function CopcViewer({ filename }: { filename: string }) {
     return (
