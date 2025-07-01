@@ -17,9 +17,6 @@ export function PlotHistogram({ plotId }: { plotId: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(allProfiles);
-    // if (!profile) return;
-
     const chart = plot({
       title: "Height Density Profile",
       height: 800,
