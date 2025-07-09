@@ -55,6 +55,8 @@ export function CopcNode({
             );
             const getPoint = (i: number) => getters.map((get) => get(i));
 
+            console.log(getPoint(0));
+
             const positions = new Float32Array(view.pointCount * 3);
             const colors = new Float32Array(view.pointCount * 3);
             const tempColor = new Color();
@@ -64,13 +66,13 @@ export function CopcNode({
                 // Switch y and z for threejs coord system
                 // Don't shift Z
                 positions.set([x - cx, z, y - cy], i * 3);
-                // tempColor.setRGB(
-                //     r / 65535,
-                //     g / 65535,
-                //     b / 65535,
-                //     SRGBColorSpace,
-                // );
-                tempColor.set(colorScale(z));
+                tempColor.setRGB(
+                    r / 65535,
+                    g / 65535,
+                    b / 65535,
+                    SRGBColorSpace,
+                );
+                // tempColor.set(colorScale(z));
                 colors.set(tempColor.toArray(), i * 3);
             }
 
@@ -100,13 +102,13 @@ export function CopcNode({
         })
         .filter((d) => d != null);
 
-    const innerCubes = Math.pow(2, depth);
-    const cubeWidth = (copc.info.cube[3] - copc.info.cube[0]) / innerCubes;
+    // const innerCubes = Math.pow(2, depth);
+    // const cubeWidth = (copc.info.cube[3] - copc.info.cube[0]) / innerCubes;
 
-    // Calculate cube shifts for positioning
-    const cubeXShift = (x - (innerCubes - 1) / 2) * cubeWidth;
-    const cubeYShift = (y - (innerCubes - 1) / 2) * cubeWidth;
-    const cubeZShift = (z - (innerCubes - 1) / 2) * cubeWidth;
+    // // Calculate cube shifts for positioning
+    // const cubeXShift = (x - (innerCubes - 1) / 2) * cubeWidth;
+    // const cubeYShift = (y - (innerCubes - 1) / 2) * cubeWidth;
+    // const cubeZShift = (z - (innerCubes - 1) / 2) * cubeWidth;
 
     if (!buffers) {
         return null;
