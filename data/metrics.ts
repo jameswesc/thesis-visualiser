@@ -15,7 +15,7 @@ export const metricsKeys = Object.keys(metrics[0]).filter(
     (key) => !nonMetricKeys.includes(key),
 );
 
-type MetricMetadata = {
+export type MetricMetadata = {
     title: string;
     description: string;
     unit: string;

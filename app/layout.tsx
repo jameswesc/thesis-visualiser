@@ -33,7 +33,7 @@ export default function RootLayout({
                         <Link className="underline" href="/">
                             Home
                         </Link>
-                        <Link className="underline" href="/plot">
+                        <Link className="underline" href="/plot?id=AGG_O_01_P1">
                             Plot Viewer
                         </Link>
                         <Link className="underline" href="/site">
