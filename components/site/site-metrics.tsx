@@ -32,7 +32,7 @@ export function SiteMetrics() {
             <h1 className="text-2xl font-bold my-6">Openness Metrics</h1>
             <div className="gap-8 grid">
                 {metricsByCategory
-                    .get("openness")!
+                    .get("cover")!
                     .map(([metricKey, metricMetadata]) => (
                         <SiteChart
                             key={metricKey}
@@ -42,7 +42,76 @@ export function SiteMetrics() {
                         />
                     ))}
             </div>
-            <h1 className="text-2xl font-bold my-6">Exterior Metrics</h1>
+            <h1 className="text-2xl font-bold my-6">Complexity Metrics</h1>
+            <h2 className="text-xl font-bold my-6">Complexity - Exterior</h2>
+            <div className="gap-8 grid">
+                {metricsByCategory
+                    .get("complexity")!
+                    .filter(
+                        ([metricKey, metricMetadata]) =>
+                            metricMetadata?.sub_category == "exterior",
+                    )
+                    .map(([metricKey, metricMetadata]) => (
+                        <SiteChart
+                            key={metricKey}
+                            metric={metricKey}
+                            data={metrics}
+                            metadata={metricMetadata}
+                        />
+                    ))}
+            </div>
+            <h2 className="text-xl font-bold my-6">Complexity - Vertical</h2>
+            <div className="gap-8 grid">
+                {metricsByCategory
+                    .get("complexity")!
+                    .filter(
+                        ([metricKey, metricMetadata]) =>
+                            metricMetadata?.sub_category == "vertical",
+                    )
+                    .map(([metricKey, metricMetadata]) => (
+                        <SiteChart
+                            key={metricKey}
+                            metric={metricKey}
+                            data={metrics}
+                            metadata={metricMetadata}
+                        />
+                    ))}
+            </div>
+            <h2 className="text-xl font-bold my-6">Complexity - Horizontal</h2>
+            <div className="gap-8 grid">
+                {metricsByCategory
+                    .get("complexity")!
+                    .filter(
+                        ([metricKey, metricMetadata]) =>
+                            metricMetadata?.sub_category == "horizontal",
+                    )
+                    .map(([metricKey, metricMetadata]) => (
+                        <SiteChart
+                            key={metricKey}
+                            metric={metricKey}
+                            data={metrics}
+                            metadata={metricMetadata}
+                        />
+                    ))}
+            </div>
+            <h2 className="text-xl font-bold my-6">Complexity - 3D</h2>
+            <div className="gap-8 grid">
+                {metricsByCategory
+                    .get("complexity")!
+                    .filter(
+                        ([metricKey, metricMetadata]) =>
+                            metricMetadata?.sub_category == "3D",
+                    )
+                    .map(([metricKey, metricMetadata]) => (
+                        <SiteChart
+                            key={metricKey}
+                            metric={metricKey}
+                            data={metrics}
+                            metadata={metricMetadata}
+                        />
+                    ))}
+            </div>
+            {/* <h1 className="text-2xl font-bold my-6">Exterior Metrics</h1>
             <div className="gap-8 grid">
                 {metricsByCategory
                     .get("exterior")!
@@ -67,7 +136,7 @@ export function SiteMetrics() {
                             metadata={metricMetadata}
                         />
                     ))}
-            </div>
+            </div> */}
             <h1 className="text-2xl font-bold my-6">Ancillary Metrics</h1>
             <div className="gap-8 grid">
                 {metricsByCategory

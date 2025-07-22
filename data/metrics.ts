@@ -1,5 +1,5 @@
-import metricsJson from "./metrics.json";
-import metricsMetadataJson from "./metrics_metadata.json";
+import metricsJson from "./metrics_v3.json";
+import metricsMetadataJson from "./metrics_v3_metadata.json";
 
 export const metrics = metricsJson;
 
@@ -20,6 +20,7 @@ export type MetricMetadata = {
     description: string;
     unit: string;
     category: string;
+    sub_category?: string;
 };
 
 export const metricsMetadata: Record<string, MetricMetadata> =

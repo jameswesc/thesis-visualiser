@@ -42,29 +42,29 @@ export function SiteChart({
                     fillOpacity: 0.3,
                 }),
 
-                tickY(
-                    data,
-                    groupZ(
-                        { y: "mean" },
-                        {
-                            fx: "site",
-                            y: metric,
-                            stroke: "site_type",
-                            strokeWidth: 2,
-                            strokeDasharray: "4,2",
-                            strokeDashoffset: 1,
-                        },
-                    ),
-                ),
+                // tickY(
+                //     data,
+                //     groupZ(
+                //         { y: "mean" },
+                //         {
+                //             fx: "site",
+                //             y: metric,
+                //             stroke: "site_type",
+                //             strokeWidth: 2,
+                //             strokeDasharray: "4,2",
+                //             strokeDashoffset: 1,
+                //         },
+                //     ),
+                // ),
 
-                dot(data, {
-                    fx: "site",
-                    y: metric,
-                    stroke: "site_type",
-                    strokeWidth: 2,
-                    strokeOpacity: 1,
-                    r: 4,
-                }),
+                // dot(data, {
+                //     fx: "site",
+                //     y: metric,
+                //     stroke: "site_type",
+                //     strokeWidth: 2,
+                //     strokeOpacity: 1,
+                //     r: 4,
+                // }),
             ],
         });
 
