@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber"
 
 export function PlotCanvas({ children }: { children: React.ReactNode }) {
     return (
@@ -17,5 +17,5 @@ export function PlotCanvas({ children }: { children: React.ReactNode }) {
                 {children}
             </Canvas>
         </div>
-    );
+    )
 }
