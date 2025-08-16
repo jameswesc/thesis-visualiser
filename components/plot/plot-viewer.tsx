@@ -1,17 +1,17 @@
-"use client";
+"use client"
 
-import { useSearchParams } from "next/navigation";
-import { CopcViewer } from "../copc/copc-viewer";
+import { useSearchParams } from "next/navigation"
+import { CopcViewer } from "../copc/copc-viewer"
 
 export function PlotViewer() {
-    const searchParams = useSearchParams();
-    const plotId = searchParams.get("id");
+    const searchParams = useSearchParams()
+    const plotId = searchParams.get("id")
 
     if (!plotId) {
-        return null;
+        return null
     }
 
-    const httpFilename = `${window.location.origin}/plots/lidar/${plotId}.copc.laz`;
+    const httpFilename = `https://thesis-lidar-data.s3.ap-southeast-2.amazonaws.com/plots/lidar/${plotId}.copc.laz`
 
-    return <CopcViewer filename={httpFilename} />;
+    return <CopcViewer filename={httpFilename} />
 }
