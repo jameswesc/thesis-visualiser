@@ -34,11 +34,13 @@
     "react-dom": "^19.0.0",
     "swr": "^2.3.3",
     "tailwind-merge": "^3.3.1",
-    "three": "^0.177.0"
+    "three": "^0.177.0",
+    "tweakpane": "^4.0.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
+    "@tweakpane/core": "^2.0.5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

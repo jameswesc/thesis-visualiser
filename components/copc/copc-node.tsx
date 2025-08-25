@@ -6,7 +6,7 @@ import { createLazPerf } from "laz-perf"
 import { Color, InstancedMesh, Object3D, SRGBColorSpace } from "three"
 import { interpolateViridis, scaleSequential } from "d3"
 import { extend } from "@react-three/fiber"
-import { shaderMaterial } from "@react-three/drei"
+import { Points, shaderMaterial } from "@react-three/drei"
 
 // Create custom shader material using drei
 const LidarPointMaterial = shaderMaterial(
@@ -49,12 +49,16 @@ export function CopcNode({
     nodeId,
     node,
     nodeMap,
+    renderAsSpheres,
+    colorBy,
 }: {
     filename: string
     copc: Copc
     nodeId: string
     node: Hierarchy.Node
     nodeMap: Hierarchy.Node.Map
+    renderAsSpheres?: boolean
+    colorBy: "rgb" | "height"
 }) {
     const [buffers, setBuffers] = useState<{
         positions: Float32Array
@@ -104,13 +108,17 @@ export function CopcNode({
                 // Switch y and z for threejs coord system
                 // Don't shift Z
                 positions.set([x - cx, z, y - cy], i * 3)
-                tempColor.setRGB(
-                    r / 65535,
-                    g / 65535,
-                    b / 65535
-                    // SRGBColorSpace
-                )
-                // tempColor.set(colorScale(z));
+
+                if (colorBy == "rgb") {
+                    tempColor.setRGB(
+                        r / 65535,
+                        g / 65535,
+                        b / 65535,
+                        renderAsSpheres ? undefined : SRGBColorSpace
+                    )
+                } else if (colorBy == "height") {
+                    tempColor.set(colorScale(z))
+                }
                 colors.set(tempColor.toArray(), i * 3)
             }
 
@@ -122,7 +130,7 @@ export function CopcNode({
         return () => {
             setBuffers(undefined)
         }
-    }, [filename, node, copc])
+    }, [filename, node, copc, renderAsSpheres, colorBy])
 
     // Update instanced mesh matrices and colors
     useEffect(() => {
@@ -189,14 +197,25 @@ export function CopcNode({
 
     return (
         <>
-            <instancedMesh
-                ref={instancedMeshRef}
-                args={[undefined, undefined, node.pointCount]}
-            >
-                <icosahedronGeometry args={[1, 1]}></icosahedronGeometry>
-                {/* @ts-ignore */}
-                <lidarPointMaterial />
-            </instancedMesh>
+            {renderAsSpheres ? (
+                <instancedMesh
+                    ref={instancedMeshRef}
+                    args={[undefined, undefined, node.pointCount]}
+                >
+                    <icosahedronGeometry args={[1, 1]}></icosahedronGeometry>
+                    {/* @ts-ignore */}
+                    <lidarPointMaterial />
+                </instancedMesh>
+            ) : (
+                <Points
+                    key={filename}
+                    positions={buffers.positions}
+                    colors={buffers.colors}
+                >
+                    <pointsMaterial size={0.3} vertexColors />
+                </Points>
+            )}
+
             {childNodes.map(({ nodeId, node }) => (
                 <CopcNode
                     key={nodeId}
@@ -205,6 +224,8 @@ export function CopcNode({
                     node={node}
                     nodeMap={nodeMap}
                     copc={copc}
+                    renderAsSpheres={renderAsSpheres}
+                    colorBy={colorBy}
                 />
             ))}
         </>
