@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
 import {
     OrbitControls,
     GizmoHelper,
     GizmoViewport,
     Grid,
-} from "@react-three/drei";
-import { CopcPointCloud } from "./copc-point-cloud";
-import { Suspense } from "react";
+} from "@react-three/drei"
+import { CopcPointCloud } from "./copc-point-cloud"
+import { Suspense } from "react"
 
 export function CopcViewer({ filename }: { filename: string }) {
     return (
@@ -34,5 +34,5 @@ export function CopcViewer({ filename }: { filename: string }) {
                 />
             </GizmoHelper>
         </>
-    );
+    )
 }

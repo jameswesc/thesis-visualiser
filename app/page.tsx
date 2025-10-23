@@ -1,6 +1,6 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import Image from "next/image";
-import Link from "next/link";
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
     return (
@@ -36,16 +36,6 @@ export default function Home() {
                 mid- and understorey in{" "}
                 <Link href="/plot?id=PPO_Y_07_P3">PPO_Y_07_P3</Link>.
             </p>
-            <h3>Metrics</h3>
-            <p>
-                Metrics can be viewed grouped <Link href="/site">by site</Link>{" "}
-                or by <Link href="/site-type">site type</Link>. Currently,
-                metrics are just those created by{" "}
-                <a href="https://github.com/r-lidar/lidR/wiki/stdmetrics">
-                    lidR's stdmetrics
-                </a>
-                . Metrics shown will be changing a lot.
-            </p>
             <h2>Site Types</h2>
             <AspectRatio ratio={1}>
                 <Image
@@ -54,27 +44,6 @@ export default function Home() {
                     fill
                 />
             </AspectRatio>
-            <h2>Technologies</h2>
-            <ul>
-                <li>
-                    Point clouds are being visualised with{" "}
-                    <a href="https://threejs.org/">Three.js</a>.
-                </li>
-                <li>
-                    Point clouds are stored and loaded as parquet files because
-                    I couldn't find an easy to use LAS/LAZ/COPC loader for the
-                    web.
-                </li>
-                <li>
-                    Charts are created with{" "}
-                    <a href="https://observablehq.com/plot/">Observable Plot</a>
-                </li>
-                <li>
-                    This website is using{" "}
-                    <a href="https://nextjs.org/">Next.js</a> hosted on{" "}
-                    <a href="https://vercel.com/">Vercel</a>.
-                </li>
-            </ul>
         </div>
-    );
+    )
 }
