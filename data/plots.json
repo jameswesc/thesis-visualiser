@@ -1888,5 +1888,65 @@
     "plot_number": 5,
     "site_plot_id": "ULY_Y_96_P5",
     "id": "ULY_Y_96_P5"
+  },
+  {
+    "site": "ULO_212",
+    "plot_number": 1,
+    "site_plot_id": "ULO_212_P1",
+    "id": "ULO_212_P1"
+  },
+  {
+    "site": "ULO_212",
+    "plot_number": 2,
+    "site_plot_id": "ULO_212_P2",
+    "id": "ULO_212_P2"
+  },
+  {
+    "site": "ULO_212",
+    "plot_number": 3,
+    "site_plot_id": "ULO_212_P3",
+    "id": "ULO_212_P3"
+  },
+  {
+    "site": "ULO_212",
+    "plot_number": 4,
+    "site_plot_id": "ULO_212_P4",
+    "id": "ULO_212_P4"
+  },
+  {
+    "site": "ULO_212",
+    "plot_number": 5,
+    "site_plot_id": "ULO_212_P5",
+    "id": "ULO_212_P5"
+  },
+  {
+    "site": "ULY_O_27",
+    "plot_number": 1,
+    "site_plot_id": "ULY_O_27_P1",
+    "id": "ULY_O_27_P1"
+  },
+  {
+    "site": "ULY_O_27",
+    "plot_number": 2,
+    "site_plot_id": "ULY_O_27_P2",
+    "id": "ULY_O_27_P2"
+  },
+  {
+    "site": "ULY_O_27",
+    "plot_number": 3,
+    "site_plot_id": "ULY_O_27_P3",
+    "id": "ULY_O_27_P3"
+  },
+  {
+    "site": "ULY_O_27",
+    "plot_number": 4,
+    "site_plot_id": "ULY_O_27_P4",
+    "id": "ULY_O_27_P4"
+  },
+  {
+    "site": "ULY_O_27",
+    "plot_number": 5,
+    "site_plot_id": "ULY_O_27_P5",
+    "id": "ULY_O_27_P5"
   }
 ]
