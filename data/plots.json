@@ -1948,5 +1948,35 @@
     "plot_number": 5,
     "site_plot_id": "ULY_O_27_P5",
     "id": "ULY_O_27_P5"
+  },
+  {
+    "site": "ULY_Y_01",
+    "plot_number": 1,
+    "site_plot_id": "ULY_Y_01_P1",
+    "id": "ULY_Y_01_P1"
+  },
+  {
+    "site": "ULY_Y_01",
+    "plot_number": 2,
+    "site_plot_id": "ULY_Y_01_P2",
+    "id": "ULY_Y_01_P2"
+  },
+  {
+    "site": "ULY_Y_01",
+    "plot_number": 3,
+    "site_plot_id": "ULY_Y_01_P3",
+    "id": "ULY_Y_01_P3"
+  },
+  {
+    "site": "ULY_Y_01",
+    "plot_number": 4,
+    "site_plot_id": "ULY_Y_01_P4",
+    "id": "ULY_Y_01_P4"
+  },
+  {
+    "site": "ULY_Y_01",
+    "plot_number": 5,
+    "site_plot_id": "ULY_Y_01_P5",
+    "id": "ULY_Y_01_P5"
   }
 ]
